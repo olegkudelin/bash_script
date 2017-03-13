@@ -1,0 +1,8 @@
+#!/bin/bash
+
+file_list=($(ls | sed 's/\.[^.]*$//' | sort | uniq -d))
+for file_mask in "${file_list[@]}"; do
+    echo "Archiving $file_mask..."
+    files=`ls $file_mask*`
+    zip "$file_mask.zip" $files
+done
